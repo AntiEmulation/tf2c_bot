@@ -14,7 +14,6 @@ config = {
     "region" : "EU",
     "mumble" : 0,
     "gameType" : "6v6"
-
 }
 classes_to_play = ['roamer' , 'pocket']
 maps_to_play = []
@@ -70,8 +69,6 @@ def class_to_xpath(team, user_class):
 			xpath = red_med
 	return xpath
 
-
-
 def load_lobby(lobbyid, team, tf2class, tf2map):
 	driver.get('https://tf2center.com/lobbies/' + str(lobbyid))
 	
@@ -116,7 +113,6 @@ def get_data_between(data, start, end):
 	result = start.partition(end)[0]
 	return result
 
-
 driver = load_selenium_geckodriver(config["FirefoxProfilePath"])
 driver.get("https://tf2center.com/lobbies/")
 
@@ -148,7 +144,3 @@ while(1):
 			load_lobby(lobbyid, team, tf2class, tf2map)
 			input("Enter to requeue")
 			driver.get("https://tf2center.com/lobbies/")
-
-
-
-
