@@ -74,14 +74,8 @@ def class_to_xpath(team, user_class):
 
 def load_lobby(lobbyid, team, tf2class, tf2map):
 	driver.get('https://tf2center.com/lobbies/' + str(lobbyid))
-	pocket = False
-	if (tf2class == "pocket"):
-		pocket = True;
-
-	if (team == "blue"):
-		xpath = blu_pocket if pocket else blu_roamer
-	else:
-		xpath = red_pocket if pocket else red_roamer
+	
+	xpath = class_to_xpath(team, tf2class)
 
 	driver.find_element_by_xpath(xpath).click()
 	print ("Obtained spot on " + tf2map + " as " + team + " " + tf2class)
