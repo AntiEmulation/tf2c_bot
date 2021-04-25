@@ -45,7 +45,7 @@ red_demo = "/html/body/div[1]/div/div[2]/div[3]/div[2]/div[1]/div[2]/div/div/div
 red_med = "/html/body/div[1]/div/div[2]/div[3]/div[2]/div[1]/div[2]/div/div/div/div[3]/div[7]/div"
 
 def class_to_xpath(team, user_class):
-	xpath == ""
+	xpath = ""
 	if (team == "blue"):
 		if (user_class == "scout"):
 			xpath = blu_scout1
