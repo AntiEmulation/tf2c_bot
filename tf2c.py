@@ -140,7 +140,7 @@ while(1):
 	
 		search_lobbies(data, hours_played, lobbies_played)
 
-		if (str(lobbyid) != str(0)):
+		if (lobbyid != 0):
 			winsound.Beep(3000, 800)
 			print("Lobby found.")
 			load_lobby(lobbyid, team, tf2class, tf2map)
