@@ -7,6 +7,7 @@ import geckodriver_autoinstaller
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import json
 import time
+import winsound
 
 #CONFIGURATION
 config = {
@@ -140,6 +141,7 @@ while(1):
 		search_lobbies(data, hours_played, lobbies_played)
 
 		if (str(lobbyid) != str(0)):
+			winsound.Beep(3000, 800)
 			print("Lobby found.")
 			load_lobby(lobbyid, team, tf2class, tf2map)
 			input("Enter to requeue")
