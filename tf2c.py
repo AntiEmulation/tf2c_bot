@@ -98,15 +98,18 @@ def search_lobbies(json, hours_played, lobbies_played):
 				if (c["tf2Class"] in classes_to_play):
 					for z in c["availableSlots"]:
 						if (z["reserved"] == False):
-							for n in z["restrictions"]:
-								if (int(n["games"]) > lobbies_played or int(n["hours"]) > hours_played):
+
+							if "games" in z["restrictions"] and z["restrictions"]["games"] > int(lobbies_played):
 									restricted = True
-						if (restricted == False):
-							lobbyid = x["no"]
-							team = z["team"]
-							tf2class = c["tf2Class"]
-							tf2map = x["map"]
-							return
+							if "hours" in z["restrictions"] and z["restrictions"]["hours"] > int(hours_played):
+									restricted = True
+									
+							if (restricted == False):
+								lobbyid = x["no"]
+								team = z["team"]
+								tf2class = c["tf2Class"]
+								tf2map = x["map"]
+								return
 
 def get_data_between(data, start, end):
 	result = ""
@@ -122,13 +125,9 @@ if "const mySteamId='';" in driver.page_source:
 else:
     print("Logged in.")
 
-input("Enter to start searching...")
-
 while(1):
 	lobbyid = 0
 
-	time.sleep(5)
-	driver.refresh()
 	current_src = driver.page_source
 
 	if "replaceAllLobbies" in current_src:
@@ -146,3 +145,6 @@ while(1):
 			load_lobby(lobbyid, team, tf2class, tf2map)
 			input("Enter to requeue")
 			driver.get("https://tf2center.com/lobbies/")
+
+	time.sleep(5)
+	driver.refresh()
