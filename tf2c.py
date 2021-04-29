@@ -83,15 +83,11 @@ def search_lobbies(json, hours_played, lobbies_played):
 	global team
 	global tf2class
 	global tf2map
-	restricted = False
-	playable_map = True
 
 	for x in json:
 		if (x["gameType"] == config["gameType"] and x["region"] == config["region"] and x["mumbleRequired"] == config["mumble"] and x["advanced"] == 0):
-			if maps_to_play:
-				playable_map = any(maptf2 in x["map"] for maptf2 in maps_to_play)
 
-			if (playable_map == False):
+			if (maps_to_play and any(maptf2 in x["map"] for maptf2 in maps_to_play) == False):
 				continue
 
 			for c in x["slots"]:
@@ -100,16 +96,15 @@ def search_lobbies(json, hours_played, lobbies_played):
 						if (z["reserved"] == False):
 
 							if "games" in z["restrictions"] and z["restrictions"]["games"] > int(lobbies_played):
-									restricted = True
+								continue
 							if "hours" in z["restrictions"] and z["restrictions"]["hours"] > int(hours_played):
-									restricted = True
+								continue
 									
-							if (restricted == False):
-								lobbyid = x["no"]
-								team = z["team"]
-								tf2class = c["tf2Class"]
-								tf2map = x["map"]
-								return
+							lobbyid = x["no"]
+							team = z["team"]
+							tf2class = c["tf2Class"]
+							tf2map = x["map"]
+							return
 
 def get_data_between(data, start, end):
 	result = ""
