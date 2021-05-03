@@ -141,5 +141,5 @@ while(1):
 			input("Enter to requeue")
 			driver.get("https://tf2center.com/lobbies/")
 
-	time.sleep(5)
-	driver.refresh()
+	time.sleep(3)
+	driver.execute_script("window.top.location = window.top.location")
